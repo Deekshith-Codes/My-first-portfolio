@@ -73,13 +73,13 @@ Never expose your real API key in client-side code or commit it to GitHub.
 1. Clone your GitHub repository:
 
    ```bash
-   git clone YOUR_GITHUB_REPOSITORY_URL
+   git clone https://github.com/Deekshith-Codes/My-first-portfolio
    ```
 
 2. Open the project directory:
 
    ```bash
-   cd YOUR_PROJECT_FOLDER
+   cd My-first-portfolio
    ```
 
 3. Install dependencies:
