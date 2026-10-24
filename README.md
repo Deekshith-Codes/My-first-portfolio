@@ -10,7 +10,7 @@ I am interested in Python programming, machine learning, data science, and full-
 
 ## Live Website
 
-**Portfolio:** Add your deployed website URL here.
+**Portfolio:** https://my-first-portfolio-omega-nine.vercel.app/
 
 ## Built With
 
