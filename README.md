@@ -1,133 +1,263 @@
-# Deekshith P — AI/ML Portfolio Website
+# Interactive AI Developer Portfolio
 
-A modern, high-performance personal portfolio website for **Deekshith P**, an AI/ML undergraduate and aspiring data scientist at AJ Institute of Engineering and Technology, Mangaluru.
+A modern, high-performance web application designed for a Computer Science & Engineering (AI/ML) student portfolio. Built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4, this application features scroll-driven animations, 3D card tilt physics, fine-grained micro-interactions, an interactive particle canvas, and a grounded AI chatbot powered by OpenRouter's free model tier.
 
-Built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**. Designed under a **strict zero-hallucination policy** grounded exclusively in verified details from `Profilee.pdf`.
-
----
-
-## 🌟 Verified Profile Highlights
-
-- **Full Name**: Deekshith P
-- **Headline**: *AI/ML Student | Aspiring Data Scientist | Python, Machine Learning & Full Stack Development | Building Real-World Projects*
-- **Location**: Kasaragod, Kerala, India
-- **Email**: [deekshithpulikuthi@gmail.com](mailto:deekshithpulikuthi@gmail.com)
-- **LinkedIn**: [linkedin.com/in/deekshith-p-065910428](https://www.linkedin.com/in/deekshith-p-065910428)
-- **Institution**: AJ Institute of Engineering and Technology, Mangaluru
-- **Degree**: Bachelor of Engineering (B.E.) in Computer Science & Engineering – Artificial Intelligence and Machine Learning (2024–2028)
-- **Confirmed Top Skill**: Python (Programming Language)
-- **Confirmed Certification**: Deloitte Data Analytics Job Simulation
+For deeper technical architecture and engineering details, see [implementation.md](./implementation.md). For implementation phases, status tracking, and verification criteria, see [implementation_plan.md](./implementation_plan.md).
 
 ---
 
-## 🚀 Key Features
+## 1. Project Overview
 
-1. **Modern Dark Aesthetic**: Deep obsidian backgrounds (`#06090e`), restrained cyan (`#38bdf8`) and indigo (`#818cf8`) accents, subtle glows, and accessible contrast.
-2. **Interactive Neural Constellation**: Lightweight HTML5 Canvas constellation background that responds gracefully to cursor movement and respects `prefers-reduced-motion`.
-3. **No Synthetic Portraits**: Authentic technical branding with a high-tech `DP` monogram emblem and an interactive `deekshith_profile.py` terminal code viewer.
-4. **Transparent Skills Section**: Highlights verified Python proficiency with code demonstrations alongside clearly labeled "Skills to Add / Roadmap" cards for upcoming competencies.
-5. **Certificate Verification Modal**: Features the Deloitte Data Analytics Job Simulation with an interactive modal detailing verification notes and step-by-step developer instructions.
-6. **Extensible Projects Pipeline**: Structured placeholder cards for upcoming ML and Full Stack repositories, including an in-code developer guide.
-7. **Validated Direct Contact Form**: Fully typed form with real-time field validation, clipboard copy feedback, and automatic prefilled `mailto:` client dispatcher.
-8. **Production-Ready Next.js**: App Router, static prerendering, zero build errors, zero linter warnings, complete OpenGraph and Twitter SEO tags.
+The primary goal of this application is to deliver a fast, responsive, and visually engaging developer portfolio with interactive features that maintain strict accessibility and performance standards:
+
+- **Aesthetic Direction**: Dark interface utilizing deep charcoal tones (`#06090e`, `#0b111e`), refined cyan (`#38bdf8`) and indigo (`#818cf8`) accents, glassmorphic panels, and subtle radial gradient lighting.
+- **Motion & Interaction**: Fluid viewport reveals, top-edge scroll progress tracking, cursor-driven 3D card tilt physics, and ambient particle networks with full `prefers-reduced-motion` compliance.
+- **Server-Side AI Assistance**: An interactive conversational assistant answering visitor queries about portfolio content, backed by OpenRouter's free model tier and strictly grounded in local configuration data.
+- **Engineering Quality**: Strict TypeScript types, static prerendering where applicable, zero layout shift (CLS), and modular component architecture.
 
 ---
 
-## 🛠️ Project Structure
+## 2. Features
+
+- **Dark Visual Theme**: Cohesive dark-mode palette configured in CSS variables and Tailwind utility layers with high-contrast text (`#f8fafc` on `#06090e`).
+- **Scroll-Linked Progress Bar**: Top-edge gradient progress bar (`ScrollProgress.tsx`) utilizing `requestAnimationFrame` to track scroll progress smoothly without scroll-jacking.
+- **Viewport Section Reveals**: Performant `IntersectionObserver` wrapper (`ScrollReveal.tsx`) animating entrance states with configurable directions, distances, and staggered delays.
+- **Interactive 3D Tilt Cards**: Mouse-tracking perspective tilt container (`TiltCard.tsx`) with dynamic specular glare highlights, automatically disabled on touch devices and when reduced motion is preferred.
+- **Interactive Particle Background**: 60fps HTML5 Canvas (`InteractiveCanvas.tsx`) simulating connected neural network nodes with mouse repulsion; automatically pauses when the browser tab is hidden to conserve GPU/CPU power.
+- **Chronological Timeline**: Visual milestone spine in the education section with glowing connector nodes and specialized coursework pillars.
+- **Skill Competency & Roadmap Switcher**: Tabbed competency interface distinguishing verified core skills from planned curriculum roadmap items.
+- **Credential Verification Modal**: Dedicated certification showcase with an interactive status modal and developer linking instructions.
+- **Validated Contact Dispatcher**: Contact form with client-side regex validation, clipboard copy feedback, and automatic prefilled `mailto:` client generation.
+- **Personalized AI Portfolio Chatbot**: Floating assistant drawer with quick question suggestions, markdown rendering, chat clearing, retry mechanisms, and error reporting.
+- **Fully Responsive**: Optimized fluid grid layouts supporting mobile (`<640px`), tablet (`640px–1023px`), and desktop (`>=1024px`) viewports without horizontal overflow.
+
+---
+
+## 3. Technology Stack
+
+| Layer | Technology | Version | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Framework** | Next.js (App Router) | `16.4.2` | Server/Client components, API routes, Turbopack engine |
+| **UI Library** | React / React DOM | `19.3.0` | Component state, `useSyncExternalStore` media subscriptions |
+| **Language** | TypeScript | `^5` | Strict static type checking and data schema validation |
+| **Styling** | Tailwind CSS | `^4` | Utility styling, modern CSS engine (`@tailwindcss/turbopack`) |
+| **Icons** | Lucide React | `^1.61.0` | Lightweight SVG icons for navigation and indicators |
+| **Vector Assets** | Custom SVGs | Native | Embedded inline SVG icons for external platforms |
+| **AI Provider** | OpenRouter API | v1 | OpenAI-compatible Chat Completions via server-side `fetch` |
+
+---
+
+## 4. Project Structure
 
 ```
-ABC/
-├── implementation.md          # Complete architecture & verification log
-├── implementation_plan.md     # Development roadmap and specifications
-├── package.json               # Dependencies and build scripts
+.
+├── .env.example               # Template for required environment variables
+├── .gitignore                 # Git ignore rules (protects local env files)
+├── implementation.md          # In-depth technical implementation reference
+├── implementation_plan.md     # Development phases and verification record
+├── next.config.ts             # Next.js configuration (Turbopack, cache components)
+├── package.json               # Dependencies, scripts, and package metadata
+├── package-lock.json          # Deterministic dependency lockfile
+├── README.md                  # Main project documentation
 ├── tsconfig.json              # TypeScript strict configuration
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx         # Root layout with SEO metadata & viewport
-│   │   ├── page.tsx           # Page orchestrator assembling all sections
-│   │   ├── globals.css        # Tailwind CSS directives, glows, scrollbars
-│   │   └── icon.svg           # Custom DP monogram favicon
-│   ├── components/
-│   │   ├── Navbar.tsx         # Sticky header with mobile drawer & active spy
-│   │   ├── Hero.tsx           # Headline, verified tags, terminal console visual
-│   │   ├── About.tsx          # Authentic student story & headline pillars
-│   │   ├── Education.tsx      # AJIET timeline card with coursework modules
-│   │   ├── Skills.tsx         # Verified Python deep dive & roadmap switcher
-│   │   ├── Certifications.tsx # Deloitte analytics card with status modal
-│   │   ├── Projects.tsx       # Reusable project cards & developer guide
-│   │   ├── Contact.tsx        # Direct contact cards & validated message form
-│   │   ├── Footer.tsx         # Dynamic year, verified links, back-to-top
-│   │   ├── InteractiveCanvas.tsx # Lightweight 60fps neural network canvas
-│   │   └── icons/
-│   │       └── BrandIcons.tsx # High-precision SVGs for LinkedIn and GitHub
-│   └── data/
-│       └── portfolioData.ts   # Centralized data model for all verified information
+├── public/                    # Static public assets
+└── src/
+    ├── app/
+    │   ├── api/
+    │   │   └── chat/
+    │   │       └── route.ts   # Server-side OpenRouter chat completion handler
+    │   ├── favicon.ico        # Fallback favicon
+    │   ├── globals.css        # Tailwind imports, theme variables, glassmorphism
+    │   ├── icon.svg           # High-resolution vector monogram favicon
+    │   ├── layout.tsx         # Root layout, font definitions, and metadata
+    │   └── page.tsx           # Main page orchestrator assembling all sections
+    ├── components/
+    │   ├── About.tsx          # Biography narrative and focus area cards
+    │   ├── Certifications.tsx # Certification card and verification status modal
+    │   ├── Contact.tsx        # Contact channel items and validated message form
+    │   ├── Education.tsx      # Chronological academic timeline and coursework pillars
+    │   ├── Footer.tsx         # Navigation links, social items, and copyright bar
+    │   ├── Hero.tsx           # Dynamic headline, verified badges, 3D terminal card
+    │   ├── InteractiveCanvas.tsx # 60fps neural network particle backdrop
+    │   ├── Navbar.tsx         # Sticky navigation header with mobile drawer
+    │   ├── PortfolioChatbot.tsx # Floating AI assistant modal with suggested prompts
+    │   ├── Projects.tsx       # 3D tilt project cards and developer guide box
+    │   ├── ScrollProgress.tsx # Top-edge scroll-linked progress indicator
+    │   ├── ScrollReveal.tsx   # IntersectionObserver wrapper for staggered reveals
+    │   ├── Skills.tsx         # Verified skills deep dive and roadmap switcher
+    │   ├── TiltCard.tsx       # 3D perspective tilt container with dynamic glare
+    │   └── icons/
+    │       └── BrandIcons.tsx # Custom SVG brand icons
+    └── data/
+        └── portfolioData.ts   # Centralized data model and single source of truth
 ```
 
 ---
 
-## 💻 Getting Started Locally
+## 5. Getting Started
 
 ### Prerequisites
-- Node.js `v18.18+` or `v20+` / `v22+`
-- npm `v9+` or `v10+`
+- **Node.js**: `v18.18.0` or higher (tested with `v20.x`, `v22.x`, and `v24.x`)
+- **npm**: `v9.x` or higher (or equivalent package manager)
 
-### Installation & Run
+### Installation
+1. Clone or extract the project repository into your workspace:
+   ```bash
+   cd My-first-portfolio-main
+   ```
+2. Install project dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+To launch the development server with Turbopack and hot-reloading:
 ```bash
-# Clone or navigate to the workspace
-cd ABC
-
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Production Build
+To run the production bundle locally:
 ```bash
-# Run production build
 npm run build
-
-# Start production server
 npm run start -- -p 3000
 ```
 
-### Run Linter
+---
+
+## 6. Environment Variables
+
+The application requires environment variables for server-side AI chatbot integration. A template file ([.env.example](./.env.example)) is provided at the repository root.
+
+Create a `.env.local` file by copying the template:
 ```bash
-npm run lint
+cp .env.example .env.local
 ```
+
+Configure the following variables in `.env.local`:
+
+```env
+# Required: OpenRouter API key for server-side chat completions
+# Obtain a key at: https://openrouter.ai/settings/keys
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Optional: Default is openrouter/free
+# Must be 'openrouter/free' or a specific model ending with ':free'
+OPENROUTER_MODEL=openrouter/free
+```
+
+> **Security Rule**: Never commit `.env.local` or any file containing real API keys to version control. The `.gitignore` file is configured to exclude `.env*` files while allowing `.env.example`.
 
 ---
 
-## 📝 How to Add Real Projects & Certificates Later
+## 7. AI Chatbot Architecture
 
-All personal information and project items are centralized in [`src/data/portfolioData.ts`](./src/data/portfolioData.ts):
+The portfolio includes an integrated AI assistant designed to answer visitor questions accurately without inventing unverified claims.
 
-### Adding a Project:
-Simply add an item to the `projects` array:
-```ts
-{
-  id: "my-real-project",
-  title: "Machine Learning Crop Yield Prediction",
-  headline: "Python & Scikit-Learn Model",
-  description: "Trained on historical rainfall and soil data to predict agricultural yields.",
-  targetStack: ["Python", "Pandas", "Scikit-Learn"],
-  githubUrl: "https://github.com/deekshith-p/crop-prediction",
-  liveUrl: "https://crop-prediction-demo.vercel.app"
-}
+```
+┌─────────────────────────────────┐
+│     Client Browser (User)       │
+│  - Suggested Prompt Pills       │
+│  - Controlled Markdown History  │
+│  - Input Length Checks (<=600)  │
+└────────────────┬────────────────┘
+                 │ POST /api/chat { message, history }
+                 ▼
+┌─────────────────────────────────┐
+│  Next.js Server API Route       │
+│  (src/app/api/chat/route.ts)    │
+│  1. In-Memory Rate Limiter      │
+│  2. Payload Validation          │
+│  3. System Prompt Grounding     │
+│     (from portfolioData.ts)     │
+│  4. Free-Model Verification     │
+└────────────────┬────────────────┘
+                 │ POST https://openrouter.ai/api/v1/chat/completions
+                 │ Authorization: Bearer ${OPENROUTER_API_KEY}
+                 ▼
+┌─────────────────────────────────┐
+│    OpenRouter API (Free Tier)   │
+│  - Model: openrouter/free       │
+│  - Strict Community Quotas      │
+└─────────────────────────────────┘
 ```
 
-### Linking the Deloitte Certificate:
-1. Place the scanned certificate PDF or image in `public/certificates/deloitte.pdf`.
-2. In `src/data/portfolioData.ts`, link the URL:
-```ts
-credentialUrl: "/certificates/deloitte.pdf"
-```
+### Key Technical Properties:
+- **Ground Truth Grounding**: The system prompt is constructed directly from `src/data/portfolioData.ts`. The assistant is instructed to state clearly when requested information is not documented in the portfolio data.
+- **Free-Only Model Guarantee**: The backend verifies that `OPENROUTER_MODEL` is either `openrouter/free` or ends with `:free`. Any non-free model identifier defaults to `openrouter/free` to avoid unexpected billing.
+- **Abuse Prevention**: Client IP request throttling (20 requests per minute window) and payload character caps (maximum 600 characters per message).
+- **Graceful Error Handling**: Specific HTTP handlers for rate limits (`429`), invalid credentials (`401`/`403`), and upstream model unavailability (`502`).
+- **Free Model Limitations**: Free models on OpenRouter rely on shared community capacity. Availability and response latencies may fluctuate depending on upstream provider load.
 
 ---
 
-## 📄 License
-Created for **Deekshith P**. All rights reserved.
+## 8. Build and Testing
+
+### Build Commands
+- **Type Checking & Production Build**:
+  ```bash
+  npm run build
+  ```
+  *Actual verified result*: Compiles successfully with Turbopack, verifies TypeScript strict types, and generates static pages along with the dynamic `/api/chat` route.
+- **Lint Audit**:
+  ```bash
+  npm run lint
+  ```
+  *Actual verified result*: 0 errors, 0 warnings across all source components.
+
+### Automated Test Procedures
+The application endpoints were validated using direct HTTP request suites:
+1. **Missing Key Validation**: Returns HTTP 200 with setup instructions when `OPENROUTER_API_KEY` is not present.
+2. **Empty Input Rejection**: Returns HTTP 400 (`Message cannot be empty.`) for whitespace-only submissions.
+3. **Payload Length Validation**: Returns HTTP 400 (`Message exceeds maximum length of 600 characters.`) when input exceeds length caps.
+4. **Malformed Payload Validation**: Returns HTTP 400 (`Invalid request payload.`) when required JSON fields are missing.
+
+---
+
+## 9. Deployment
+
+The application is optimized for deployment on [Vercel](https://vercel.com/):
+
+1. Push your repository to GitHub:
+   ```bash
+   git add .
+   git commit -m "Configure portfolio for production"
+   git push origin main
+   ```
+2. Import the repository into the Vercel dashboard.
+3. In **Project Settings > Environment Variables**, add:
+   - `OPENROUTER_API_KEY`: Your OpenRouter API key.
+   - `OPENROUTER_MODEL`: `openrouter/free`
+4. Deploy the project. Next.js will automatically configure static prerendering for the frontend pages and deploy `/api/chat` as a serverless function.
+
+---
+
+## 10. Customization
+
+All portfolio content is decoupled from UI presentation and managed centrally in [src/data/portfolioData.ts](./src/data/portfolioData.ts):
+
+- **Profile & Headline**: Edit `PORTFOLIO_DATA.personal` to update the name, headline, location, email, and social links.
+- **Education & Timeline**: Update `PORTFOLIO_DATA.education` to modify institutions, degrees, dates, and curriculum highlights.
+- **Skills & Stack**: Edit `PORTFOLIO_DATA.skills.verified` for confirmed competencies and `PORTFOLIO_DATA.skills.roadmap` for upcoming skills.
+- **Projects**: Modify `PORTFOLIO_DATA.projects` to add real GitHub repository links (`githubUrl`), live demonstration URLs (`liveUrl`), and technology tags.
+- **Certificates**: Edit `PORTFOLIO_DATA.certifications` to add issued credentials, verification URLs, or links to assets placed in `public/certificates/`.
+
+Updating `portfolioData.ts` automatically updates both the visual website sections and the AI chatbot's system grounding prompt.
+
+---
+
+## 11. Troubleshooting
+
+| Issue | Cause | Solution |
+| :--- | :--- | :--- |
+| **Chatbot displays setup notice** | `OPENROUTER_API_KEY` is not set in `.env.local` or Vercel. | Add `OPENROUTER_API_KEY=your_key` to `.env.local` and restart the dev server. |
+| **HTTP 429 in Chatbot** | OpenRouter free model community rate limit reached. | Wait a few moments before sending another prompt; free tier models share capacity across users. |
+| **`npm.ps1 cannot be loaded` (Windows)** | Windows PowerShell script execution policy restriction. | Run commands through `cmd.exe /c npm run dev` or adjust the execution policy. |
+| **Model temporarily unavailable (502)** | Upstream free provider is undergoing maintenance. | Set `OPENROUTER_MODEL=openrouter/free` to allow OpenRouter to route automatically to an available free provider. |
+| **Build fails on date evaluated during prerender** | Unstable `new Date()` called during client component initial state. | Keep initial client timestamps deterministic and evaluate dates only inside event handlers or `useEffect`. |
+
+---
+
+## 12. License
+
+No open-source license has been specified for this repository. All rights are reserved by the original project owner unless otherwise declared.
