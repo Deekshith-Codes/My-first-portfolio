@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -12,6 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://my-first-portfolio-omega-nine.vercel.app";
+
 export const viewport: Viewport = {
   themeColor: "#06090e",
   colorScheme: "dark",
@@ -20,9 +23,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+
   title: "Deekshith P | AI/ML Student & Aspiring Data Scientist",
   description:
     "Official portfolio of Deekshith P, AI/ML undergraduate at AJ Institute of Engineering and Technology, Mangaluru. Specializing in Python, Machine Learning, and Data Analytics.",
+
   keywords: [
     "Deekshith P",
     "AI/ML Student",
@@ -34,27 +40,40 @@ export const metadata: Metadata = {
     "Data Analytics",
     "Kasaragod Kerala",
   ],
+
   authors: [{ name: "Deekshith P" }],
   creator: "Deekshith P",
   publisher: "Deekshith P",
+
   robots: {
     index: true,
     follow: true,
   },
+
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://deekshith-portfolio.vercel.app",
+    url: siteUrl,
     siteName: "Deekshith P - AI/ML Portfolio",
     title: "Deekshith P | AI/ML Student & Aspiring Data Scientist",
     description:
-      "Official portfolio of Deekshith P, undergraduate in Computer Science & Engineering (AI & ML) at AJIET Mangaluru. Python, Machine Learning, and real-world project developments.",
+      "Explore my AI/ML projects, Python development, and data analytics work.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Deekshith P - AI/ML Developer Portfolio",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Deekshith P | AI/ML Student & Aspiring Data Scientist",
     description:
-      "Explore the verified portfolio of Deekshith P: Python, AI/ML engineering, and Deloitte Data Analytics certification.",
+      "Explore my AI/ML projects, Python development, and data analytics work.",
+    images: ["/og-image.png"],
   },
 };
 
