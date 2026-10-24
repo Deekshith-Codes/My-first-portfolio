@@ -95,7 +95,7 @@ export default function Navbar() {
               href={PORTFOLIO_DATA.personal.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-lg text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 transition-all"
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-lg text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white active:scale-95 border border-white/10 transition-all"
               aria-label="View LinkedIn Profile"
             >
                 <LinkedInIcon className="w-3.5 h-3.5 text-sky-400" />
@@ -105,7 +105,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all"
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 active:scale-95 text-white shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>Get in Touch</span>
@@ -118,14 +118,14 @@ export default function Navbar() {
               href={PORTFOLIO_DATA.personal.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-slate-300 bg-white/5 border border-white/10"
+              className="p-2 rounded-lg text-slate-300 bg-white/5 border border-white/10 active:scale-95 transition-all"
               aria-label="LinkedIn"
             >
               <LinkedInIcon className="w-4 h-4 text-sky-400" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="p-2 rounded-lg text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-sky-500"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
             >

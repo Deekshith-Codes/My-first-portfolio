@@ -33,14 +33,17 @@ export default function InteractiveCanvas() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
       initParticles();
+      if (prefersReducedMotion) {
+        drawFrame();
+      }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     const mouse = {
       x: -1000,
       y: -1000,
-      radius: 120,
+      radius: 130,
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -53,11 +56,13 @@ export default function InteractiveCanvas() {
       mouse.y = -1000;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", handleMouseLeave);
+    if (!prefersReducedMotion) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      window.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+    }
 
     let particles: Particle[] = [];
-    const particleCount = Math.min(Math.floor((width * height) / 22000), 55);
+    const particleCount = Math.min(Math.floor((width * height) / 24000), 45);
 
     function initParticles() {
       particles = [];
@@ -65,20 +70,20 @@ export default function InteractiveCanvas() {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          radius: Math.random() * 1.5 + 1,
-          baseAlpha: Math.random() * 0.35 + 0.15,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 1.4 + 1,
+          baseAlpha: Math.random() * 0.3 + 0.15,
         });
       }
     }
 
     initParticles();
 
-    const render = () => {
+    const drawFrame = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw faint connections
+      // Draw faint neural connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -86,7 +91,7 @@ export default function InteractiveCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.15;
+            const alpha = (1 - dist / 110) * 0.14;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -97,7 +102,7 @@ export default function InteractiveCanvas() {
         }
       }
 
-      // Draw particles & update position
+      // Draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
@@ -110,7 +115,7 @@ export default function InteractiveCanvas() {
           if (p.y < 0) p.y = height;
           if (p.y > height) p.y = 0;
 
-          // Mouse gentle repulsion
+          // Gentle mouse repulsion
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -127,16 +132,36 @@ export default function InteractiveCanvas() {
         ctx.fillStyle = `rgba(129, 140, 248, ${p.baseAlpha})`;
         ctx.fill();
       }
+    };
 
-      animationFrameId = requestAnimationFrame(render);
+    const render = () => {
+      if (document.hidden) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
+      drawFrame();
+
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     render();
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden && prefersReducedMotion) {
+        drawFrame();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
